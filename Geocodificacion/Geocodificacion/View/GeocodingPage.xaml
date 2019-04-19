@@ -1,0 +1,35 @@
+﻿<views:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                xmlns:views="clr-namespace:Geocodificacion.View"
+                xmlns:viewmodels="clr-namespace:Geocodificacion.ViewModel"
+                x:Class="Geocodificacion.View.GeocodingPage"
+                Title="Geocoding">
+    <views:BasePage.BindingContext>
+        <viewmodels:GeocodingViewModel />
+    </views:BasePage.BindingContext>
+
+    <StackLayout>
+        <Label Text="Ejemplo geocodificación y geocodificación inversa." FontAttributes="Bold" Margin="12" />
+
+        <ScrollView>
+            <StackLayout Padding="12,0,12,12" Spacing="6">
+                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+
+                <Label Text="Geocodigicación:" FontAttributes="Bold" Margin="0,6,0,0" />
+                <Label Text="Latitud:" />
+                <Entry Text="{Binding Latitude}" Keyboard="Numeric" />
+                <Label Text="Longitud:" />
+                <Entry Text="{Binding Longitude}" Keyboard="Numeric" />
+                <Button Text="Detectar dirección de posicionamiento" Command="{Binding GetAddressCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <Label Text="{Binding GeocodeAddress}" />
+
+                <Label Text="Geocodificación inversa:" FontAttributes="Bold" Margin="0,6,0,0" />
+                <Label Text="Direccion:" />
+                <Entry Text="{Binding Address}" />
+                <Button Text="Detectar ubicación" Command="{Binding GetPositionCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <Label Text="{Binding GeocodePosition}" />
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+</views:BasePage>
